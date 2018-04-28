@@ -1,5 +1,5 @@
 import React from "react"
-import { Route, Router } from "react-router-dom"
+import { Redirect, Route, Router } from "react-router-dom"
 import App from "./components/App"
 import Home from "./components/Home"
 import Callback from "./components/Callback"
@@ -7,6 +7,7 @@ import Auth from "./modules/Auth/Auth"
 import history from "./modules/History/history"
 import AboutUs from "./components/AboutUs"
 import Topics from "./components/Topics"
+import Profile from "./components/Profile"
 
 const auth = new Auth()
 
@@ -36,6 +37,16 @@ export const makeMainRoutes = () => {
             handleAuthentication(props)
             return <Callback {...props} />
           }}
+        />
+        <Route
+          path="/profile"
+          render={props =>
+            !auth.isAuthenticated() ? (
+              <Redirect to="/home" />
+            ) : (
+              <Profile auth={auth} {...props} />
+            )
+          }
         />
       </div>
     </Router>
