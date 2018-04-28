@@ -1,32 +1,54 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Home from "./Home";
-import AboutUs from "./AboutUs";
-import Topics from "./Topics";
-import "./App.css";
+import React, { Component } from "react"
+import "./App.css"
 
-const App = () => (
-  <Router>
-    <div>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/about">About</Link>
-        </li>
-        <li>
-          <Link to="/topics">Topics</Link>
-        </li>
-      </ul>
+class App extends Component {
+  goTo(route) {
+    this.props.history.replace(`/${route}`)
+  }
 
-      <hr />
+  login() {
+    this.props.auth.login()
+  }
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={AboutUs} />
-      <Route path="/topics" component={Topics} />
-    </div>
-  </Router>
-);
+  logout() {
+    this.props.auth.logout()
+  }
 
-export default App;
+  render() {
+    const { isAuthenticated } = this.props.auth
+
+    return (
+      <div>
+        <button
+          bsStyle="primary"
+          className="btn-margin"
+          onClick={this.goTo.bind(this, "home")}
+        >
+          Home
+        </button>
+        {!isAuthenticated() && (
+          <button
+            id="qsLoginBtn"
+            bsStyle="primary"
+            className="btn-margin"
+            onClick={this.login.bind(this)}
+          >
+            Log In
+          </button>
+        )}
+        {isAuthenticated() && (
+          <button
+            id="qsLogoutBtn"
+            bsStyle="primary"
+            className="btn-margin"
+            onClick={this.logout.bind(this)}
+          >
+            Log Out
+          </button>
+        )}
+      </div>
+    )
+  }
+}
+
+export default App
