@@ -4,7 +4,15 @@
   "private": true,
   "dependencies": {
     "auth0-js": "^9.5.0",
+    "axios": "^0.18.0",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-jwt-authz": "^1.0.0",
     "history": "^4.7.2",
+    "jwks-rsa": "^1.2.1",
+    "morgan": "^1.9.0",
+    "npm-run-all": "^4.1.2",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.3.2",
@@ -16,7 +24,9 @@
     "redux-devtools-extension": "^2.13.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm-run-all --parallel server:start client:start",
+    "client:start": "react-scripts start",
+    "server:start": "node api/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

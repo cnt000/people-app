@@ -28,6 +28,12 @@ class App extends Component {
             >
               Home
             </Button>
+            <Button
+              className="btn-margin"
+              onClick={this.goTo.bind(this, "ping")}
+            >
+              Ping
+            </Button>
             {!isAuthenticated() && (
               <Button className="btn-margin" onClick={this.login.bind(this)}>
                 Log In

@@ -1,14 +1,15 @@
 import auth0 from "auth0-js"
-import history from "../../modules/History/history"
+import { AUTH_CONFIG } from "./auth0-variables"
+import history from "../History/history"
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
-    domain: "people-app.eu.auth0.com",
-    clientID: "ZckIyKOdUnc7V7CxFXDTZojcKsvLOz5s",
-    redirectUri: "http://localhost:3000/callback",
-    audience: "https://people-app.eu.auth0.com/userinfo",
+    domain: AUTH_CONFIG.domain,
+    clientID: AUTH_CONFIG.clientId,
+    redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: AUTH_CONFIG.apiUrl,
     responseType: "token id_token",
-    scope: "openid profile"
+    scope: "openid profile read:ping"
   })
 
   userProfile
@@ -18,6 +19,7 @@ export default class Auth {
     this.logout = this.logout.bind(this)
     this.handleAuthentication = this.handleAuthentication.bind(this)
     this.isAuthenticated = this.isAuthenticated.bind(this)
+    this.getAccessToken = this.getAccessToken.bind(this)
     this.getProfile = this.getProfile.bind(this)
   }
 
@@ -33,12 +35,13 @@ export default class Auth {
       } else if (err) {
         history.replace("/home")
         console.log(err)
+        alert(`Error: ${err.error}. Check the console for further details.`)
       }
     })
   }
 
   setSession(authResult) {
-    // Set the time that the Access Token will expire at
+    // Set the time that the access token will expire at
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     )
@@ -49,26 +52,10 @@ export default class Auth {
     history.replace("/home")
   }
 
-  logout() {
-    // Clear Access Token and ID Token from local storage
-    localStorage.removeItem("access_token")
-    localStorage.removeItem("id_token")
-    localStorage.removeItem("expires_at")
-    // navigate to the home route
-    history.replace("/home")
-  }
-
-  isAuthenticated() {
-    // Check whether the current time is past the
-    // Access Token's expiry time
-    let expiresAt = JSON.parse(localStorage.getItem("expires_at"))
-    return new Date().getTime() < expiresAt
-  }
-
   getAccessToken() {
     const accessToken = localStorage.getItem("access_token")
     if (!accessToken) {
-      throw new Error("No Access Token found")
+      throw new Error("No access token found")
     }
     return accessToken
   }
@@ -81,5 +68,22 @@ export default class Auth {
       }
       cb(err, profile)
     })
+  }
+
+  logout() {
+    // Clear access token and ID token from local storage
+    localStorage.removeItem("access_token")
+    localStorage.removeItem("id_token")
+    localStorage.removeItem("expires_at")
+    this.userProfile = null
+    // navigate to the home route
+    history.replace("/home")
+  }
+
+  isAuthenticated() {
+    // Check whether the current time is past the
+    // access token's expiry time
+    let expiresAt = JSON.parse(localStorage.getItem("expires_at"))
+    return new Date().getTime() < expiresAt
   }
 }

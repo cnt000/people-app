@@ -7,6 +7,7 @@ import Auth from "./modules/Auth/Auth"
 import history from "./modules/History/history"
 import AboutUs from "./components/AboutUs"
 import Topics from "./components/Topics"
+import Ping from "./components/Ping"
 import Profile from "./components/Profile"
 
 const auth = new Auth()
@@ -45,6 +46,16 @@ export const makeMainRoutes = () => {
               <Redirect to="/home" />
             ) : (
               <Profile auth={auth} {...props} />
+            )
+          }
+        />
+        <Route
+          path="/ping"
+          render={props =>
+            !auth.isAuthenticated() ? (
+              <Redirect to="/home" />
+            ) : (
+              <Ping auth={auth} {...props} />
             )
           }
         />
