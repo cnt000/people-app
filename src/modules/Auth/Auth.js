@@ -4,6 +4,7 @@ import history from "../History/history"
 
 export default class Auth {
   userProfile
+  tokenRenewalTimeout
   requestedScopes = "openid profile read:ping write:ping"
 
   auth0 = new auth0.WebAuth({
@@ -22,6 +23,7 @@ export default class Auth {
     this.isAuthenticated = this.isAuthenticated.bind(this)
     this.getAccessToken = this.getAccessToken.bind(this)
     this.getProfile = this.getProfile.bind(this)
+    this.scheduleRenewal()
   }
 
   login() {
@@ -52,6 +54,10 @@ export default class Auth {
     localStorage.setItem("expires_at", expiresAt)
 
     localStorage.setItem("scopes", JSON.stringify(scopes))
+
+    // schedule a token renewal
+    this.scheduleRenewal()
+
     // navigate to the home route
     history.replace("/home")
   }
@@ -80,6 +86,7 @@ export default class Auth {
     localStorage.removeItem("id_token")
     localStorage.removeItem("expires_at")
     this.userProfile = null
+    clearTimeout(this.tokenRenewalTimeout)
     // navigate to the home route
     history.replace("/home")
   }
@@ -96,5 +103,28 @@ export default class Auth {
       JSON.parse(localStorage.getItem("scopes")) || ""
     ).split(" ")
     return scopes.every(scope => grantedScopes.includes(scope))
+  }
+
+  renewToken() {
+    this.auth0.checkSession(
+      { redirectUri: "http://localhost:3000" },
+      (err, result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          this.setSession(result)
+        }
+      }
+    )
+  }
+
+  scheduleRenewal() {
+    const expiresAt = JSON.parse(localStorage.getItem("expires_at"))
+    const delay = expiresAt - Date.now()
+    if (delay > 0) {
+      this.tokenRenewalTimeout = setTimeout(() => {
+        this.renewToken()
+      }, delay)
+    }
   }
 }
