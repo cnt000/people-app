@@ -3,16 +3,17 @@ import { AUTH_CONFIG } from "./auth0-variables"
 import history from "../History/history"
 
 export default class Auth {
+  userProfile
+  requestedScopes = "openid profile read:ping write:ping"
+
   auth0 = new auth0.WebAuth({
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientId,
     redirectUri: AUTH_CONFIG.callbackUrl,
     audience: AUTH_CONFIG.apiUrl,
     responseType: "token id_token",
-    scope: "openid profile read:ping"
+    scope: this.requestedScopes
   })
-
-  userProfile
 
   constructor() {
     this.login = this.login.bind(this)
@@ -41,6 +42,7 @@ export default class Auth {
   }
 
   setSession(authResult) {
+    const scopes = authResult.scope || this.requestedScopes || ""
     // Set the time that the access token will expire at
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
@@ -48,6 +50,8 @@ export default class Auth {
     localStorage.setItem("access_token", authResult.accessToken)
     localStorage.setItem("id_token", authResult.idToken)
     localStorage.setItem("expires_at", expiresAt)
+
+    localStorage.setItem("scopes", JSON.stringify(scopes))
     // navigate to the home route
     history.replace("/home")
   }
@@ -85,5 +89,12 @@ export default class Auth {
     // access token's expiry time
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"))
     return new Date().getTime() < expiresAt
+  }
+
+  userHasScopes(scopes) {
+    const grantedScopes = (
+      JSON.parse(localStorage.getItem("scopes")) || ""
+    ).split(" ")
+    return scopes.every(scope => grantedScopes.includes(scope))
   }
 }

@@ -9,6 +9,7 @@ import AboutUs from "./components/AboutUs"
 import Topics from "./components/Topics"
 import Ping from "./components/Ping"
 import Profile from "./components/Profile"
+import Admin from "./components/Admin"
 
 const auth = new Auth()
 
@@ -56,6 +57,16 @@ export const makeMainRoutes = () => {
               <Redirect to="/home" />
             ) : (
               <Ping auth={auth} {...props} />
+            )
+          }
+        />
+        <Route
+          path="/admin"
+          render={props =>
+            !auth.isAuthenticated() || !auth.userHasScopes(["write:ping"]) ? (
+              <Redirect to="/home" />
+            ) : (
+              <Admin auth={auth} {...props} />
             )
           }
         />

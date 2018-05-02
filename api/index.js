@@ -34,6 +34,7 @@ const checkJwt = jwt({
 })
 
 const checkScopes = jwtAuthz(["read:ping"])
+const checkScopesAdmin = jwtAuthz(["write:ping"])
 
 app.get("/api/public", function(req, res) {
   res.json({
@@ -46,6 +47,13 @@ app.get("/api/private", checkJwt, checkScopes, function(req, res) {
   res.json({
     message:
       "Hello from a private endpoint! You need to be authenticated and have a scope of read:ping to see this."
+  })
+})
+
+app.post("/api/admin", checkJwt, checkScopesAdmin, function(req, res) {
+  res.json({
+    message:
+      "Hello from an admin endpoint! You need to be authenticated and have a scope of write:ping to see this."
   })
 })
 

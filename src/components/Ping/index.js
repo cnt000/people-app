@@ -1,8 +1,7 @@
 import React, { Component } from "react"
 import { Button } from "react-bootstrap"
+import { API_URL } from "../../constants"
 import axios from "axios"
-
-const API_URL = "http://localhost:3001/api"
 
 class Ping extends Component {
   componentWillMount() {
