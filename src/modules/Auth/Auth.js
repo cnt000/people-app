@@ -1,5 +1,7 @@
 import auth0 from "auth0-js"
-import { AUTH_CONFIG } from "./auth0-variables"
+import {
+  AUTH_CONFIG
+} from "./auth0-variables"
 import history from "../History/history"
 
 export default class Auth {
@@ -98,6 +100,11 @@ export default class Auth {
     return new Date().getTime() < expiresAt
   }
 
+  isAdmin() {
+    let accessToken = this.getAccessToken()
+
+  }
+
   userHasScopes(scopes) {
     const grantedScopes = (
       JSON.parse(localStorage.getItem("scopes")) || ""
@@ -106,8 +113,9 @@ export default class Auth {
   }
 
   renewToken() {
-    this.auth0.checkSession(
-      { redirectUri: "http://localhost:3000" },
+    this.auth0.checkSession({
+        redirectUri: "http://localhost:3000"
+      },
       (err, result) => {
         if (err) {
           console.log(err)
