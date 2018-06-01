@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Navbar, Button } from "react-bootstrap"
+import baseStyles from './base-styles'
 import "./App.css"
 
 class App extends Component {
@@ -17,7 +18,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated, userHasScopes } = this.props.auth
-
+    baseStyles()
     return (
       <div>
         <Navbar fluid>
