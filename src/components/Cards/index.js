@@ -1,19 +1,17 @@
 import React from "react"
+import styled from "styled-components"
 import Card from "../Card"
 
-const Cards = props => <ul>
-  <li>
-    <Card value={"A"} visible={true} showed={true} />
-  </li>
-  <li>
-    <Card value={"B"} visible={true} showed={false} />
-  </li>
-  <li>
-    <Card value={"C"} visible={false} showed={false} />
-  </li>
-  <li>
-    <Card />
-  </li>
-</ul>
+const Ul = styled.ul`
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+`
+const Cards = props => 
+  <Ul>
+    {props.cards.map(card =>
+      <li><Card value={card.value} visible={card.visible} showed={card.showed} /></li>
+    )}
+  </Ul>
 
 export default Cards
