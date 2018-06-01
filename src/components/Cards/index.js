@@ -9,8 +9,14 @@ const Ul = styled.ul`
 `
 const Cards = props => 
   <Ul>
-    {props.cards.map(card =>
-      <li><Card value={card.value} visible={card.visible} showed={card.showed} /></li>
+    {props.cards.map((card, i) =>
+      <li key={i}>
+        <Card
+          value={card.value}
+          visible={card.visible}
+          showed={card.showed}
+        />
+      </li>
     )}
   </Ul>
 
