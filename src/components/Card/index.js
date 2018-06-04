@@ -8,12 +8,13 @@ const Div = styled.div`
   border: 2px solid black;
   color: black;
   border-radius: 0.25em;
-  background-color: lightgray;
+  background: linear-gradient(210deg, 
+    rgba(26, 188, 156, 1) 0%, rgba(142, 68, 173, 1) 100%);
   margin: 0.2em;
   font-size: 16px;
 
   ${props => props.showed && css`
-    background: green;
+    background: white;
   `}
 `;
 
@@ -29,8 +30,7 @@ class Card extends React.Component {
   }
 
   render() {
-    return <Div 
-      showed={this.state.showed}
+    return <Div showed={this.state.showed}
       onClick={() => this.show()}>
         {this.state.showed && this.props.value}
       </Div>

@@ -1,8 +1,9 @@
-
-import { injectGlobal } from 'styled-components'
+import {
+  injectGlobal
+} from 'styled-components'
 import reset from 'styled-reset'
 
-const baseStyles = () => injectGlobal`
+const baseStyles = () => injectGlobal `
   ${reset}
   /* other styles */
 `
