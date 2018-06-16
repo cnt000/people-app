@@ -1,14 +1,14 @@
 const cards = [
   {
-    value: "A",
+    value: 0,
     showed: false
   },
   {
-    value: "B",
+    value: 1,
     showed: true
   },
   {
-    value: "C",
+    value: 2,
     showed: false
   },
   {
@@ -33,4 +33,10 @@ const cards = [
   }
 ]
 
-export default cards
+const gameState = {
+  playing: false,
+  selectedCards: [],
+  cards
+}
+
+export default gameState
