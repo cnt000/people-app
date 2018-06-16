@@ -23,7 +23,7 @@ const Div = styled.div`
   background-size: 170% 100%;
   animation: ${gradient} 15s ease infinite;
   border-radius: 0.25em;
-  padding: 1em;
+  padding: .4em;
 `
 
 const Ul = styled.ul`
