@@ -1,34 +1,34 @@
 const cards = [
   {
-    value: 0,
+    value: "AAA",
     showed: false
   },
   {
-    value: 1,
-    showed: true
-  },
-  {
-    value: 2,
+    value: "BBB",
     showed: false
   },
   {
-    value: "D",
+    value: "CCC",
     showed: false
   },
   {
-    value: "A",
+    value: "DDD",
     showed: false
   },
   {
-    value: "B",
+    value: "AAA",
     showed: false
   },
   {
-    value: "C",
+    value: "BBB",
     showed: false
   },
   {
-    value: "D",
+    value: "CCC",
+    showed: false
+  },
+  {
+    value: "DDD",
     showed: false
   }
 ]
