@@ -1,5 +1,6 @@
 import React from 'react'
-import styled, {css} from 'styled-components';
+import PropTypes from 'prop-types'
+import styled, {css} from 'styled-components'
 
 const Div = styled.div`
   padding: 0.25em 1em;
@@ -16,25 +17,20 @@ const Div = styled.div`
   ${props => props.showed && css`
     background: white;
   `}
-`;
+`
 
-class Card extends React.Component {
+const Card = ({ value, showed, onClick }) => {
+  return (
+    <Div onClick={onClick} showed={showed}>
+      {showed && value}
+    </Div>
+  )
+}
 
-  constructor(props) {
-    super(props)
-    this.state = { showed: this.props.showed }
-  }
-
-  show() {
-    this.setState({ showed: true })
-  }
-
-  render() {
-    return <Div showed={this.state.showed}
-      onClick={() => this.show()}>
-        {this.state.showed && this.props.value}
-      </Div>
-  }
+Card.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  showed: PropTypes.bool.isRequired,
+  value: PropTypes.string.isRequired
 }
 
 export default Card

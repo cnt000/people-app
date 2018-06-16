@@ -1,11 +1,21 @@
-import React from "react"
-import styled from "styled-components"
+import { connect } from 'react-redux'
 
 import Cards from "../Cards"
-import cards from "../../defaultState"
+import { showCard } from "./actions"
 
-const MemoryGame = props => (
-  <Cards cards={cards} />
-)
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cards: state.memoryGameReducer.cards
+  }
+}
+
+const mapDispatchToProps = dispatch => ({
+  showCard: id => dispatch(showCard(id))
+})
+
+const MemoryGame = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cards)
 
 export default MemoryGame

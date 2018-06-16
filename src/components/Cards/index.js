@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types'
 import styled, { keyframes } from "styled-components"
 import Card from "../Card"
 
@@ -12,7 +13,7 @@ const gradient = keyframes`
   100% {
     background-position: 0% 50%
   }
-`;
+`
 
 const Div = styled.div`
   width: 100vw;
@@ -36,19 +37,30 @@ const Li = styled.li`
   padding: 0;
 `
 
-const Cards = props => 
+const Cards = ({ cards, showCard }) => (
   <Div>
     <Ul>
-      {props.cards.map((card, i) =>
-        <Li key={i}>
+      {cards.map((card, position) =>
+        <Li key={position}>
           <Card
             value={card.value}
-            visible={card.visible}
             showed={card.showed}
+            onClick={() => showCard(position)}
           />
         </Li>
       )}
     </Ul>
   </Div>
+)
+
+Cards.propTypes = {
+  cards: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      showed: PropTypes.bool.isRequired
+    }).isRequired
+  ).isRequired,
+  onCardClick: PropTypes.func.isRequired
+}
 
 export default Cards
