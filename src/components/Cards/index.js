@@ -16,8 +16,8 @@ const gradient = keyframes`
 `
 
 const Div = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+  height: 90vh;
   border: 1px solid black;
   background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 170% 100%;
@@ -30,6 +30,8 @@ const Ul = styled.ul`
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   grid-template-rows: 25% 25% 25% 25%;
+  margin: 0;
+  padding: 0;
 `
 const Li = styled.li`
   list-style: none;
