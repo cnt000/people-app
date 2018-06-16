@@ -40,7 +40,7 @@ const Li = styled.li`
 const Cards = ({ cards, showCard }) => (
   <Div>
     <Ul>
-      {cards.map((card, position) =>
+      {cards && cards.map((card, position) =>
         <Li key={position}>
           <Card
             value={card.value}

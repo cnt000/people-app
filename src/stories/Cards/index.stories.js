@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import Cards from "../../components/Cards"
-import cards from "../../defaultState"
+import defaultState from "../../defaultState"
 
 const cards_two = [
   {
@@ -63,8 +64,8 @@ const cards_six = [
 ]
 
 storiesOf('Cards', module)
-  .add('default state', () => <Cards cards={cards} />)
-  .add('2 cards', () => <Cards cards={cards_two} />)
-  .add('4 cards', () => <Cards cards={cards_four} />)
-  .add('6 cards', () => <Cards cards={cards_six} />)
-  .add('empty', () => <Cards cards={[]} />)
+  .add('default state', () => <Cards cards={defaultState.cards} showCard={action('show')} />)
+  .add('2 cards', () => <Cards cards={cards_two} showCard={action('show')} />)
+  .add('4 cards', () => <Cards cards={cards_four} showCard={action('show')} />)
+  .add('6 cards', () => <Cards cards={cards_six} showCard={action('show')} />)
+  .add('empty', () => <Cards cards={[]} showCard={action('show')} />)
