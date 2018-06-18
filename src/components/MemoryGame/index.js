@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 
 import Cards from "../Cards"
-import { showCard } from "./actions"
+import { 
+  showCard
+} from "./actions"
 
 const mapStateToProps = (state, ownProps) => {
   return {
