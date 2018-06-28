@@ -64,8 +64,20 @@ const cards_six = [
 ]
 
 storiesOf('Cards', module)
-  .add('default state', () => <Cards cards={defaultState.cards} showCard={action('show')} />)
-  .add('2 cards', () => <Cards cards={cards_two} showCard={action('show')} />)
-  .add('4 cards', () => <Cards cards={cards_four} showCard={action('show')} />)
-  .add('6 cards', () => <Cards cards={cards_six} showCard={action('show')} />)
-  .add('empty', () => <Cards cards={[]} showCard={action('show')} />)
+  .add('before start', () => <Cards cards={[]} showCard={action('show')} 
+    startGame={action('start')} isPlaying={false} />)
+
+  .add('default state', () => <Cards cards={defaultState.cards} 
+    showCard={action('show')} startGame={action('start')} isPlaying={true} />)
+    
+  .add('2 cards', () => <Cards cards={cards_two} 
+    showCard={action('show')} startGame={action('start')} isPlaying={true} />)
+
+  .add('4 cards', () => <Cards cards={cards_four} 
+    showCard={action('show')} startGame={action('start')} isPlaying={true} />)
+
+  .add('6 cards', () => <Cards cards={cards_six} 
+    showCard={action('show')} startGame={action('start')} isPlaying={true} />)
+
+  .add('empty', () => <Cards cards={[]} 
+    showCard={action('show')} startGame={action('start')} isPlaying={true} />)
