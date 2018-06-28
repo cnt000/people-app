@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cards should render correctly empty 1`] = `
+<styled.div>
+  <styled.ul />
+</styled.div>
+`;
+
+exports[`Cards should render correctly with snapshot 1`] = `
+<styled.div>
+  <styled.ul>
+    <styled.li
+      key="0"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="AAA"
+      />
+    </styled.li>
+    <styled.li
+      key="1"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="BBB"
+      />
+    </styled.li>
+    <styled.li
+      key="2"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="CCC"
+      />
+    </styled.li>
+    <styled.li
+      key="3"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="DDD"
+      />
+    </styled.li>
+    <styled.li
+      key="4"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="AAA"
+      />
+    </styled.li>
+    <styled.li
+      key="5"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="BBB"
+      />
+    </styled.li>
+    <styled.li
+      key="6"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="CCC"
+      />
+    </styled.li>
+    <styled.li
+      key="7"
+    >
+      <Card
+        onClick={[Function]}
+        showed={false}
+        value="DDD"
+      />
+    </styled.li>
+  </styled.ul>
+</styled.div>
+`;

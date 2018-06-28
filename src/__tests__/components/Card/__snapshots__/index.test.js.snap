@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card fire an onClick 1`] = `
+<styled.div
+  onClick={[Function]}
+  showed={true}
+>
+  A
+</styled.div>
+`;
+
+exports[`Card should render correctly hided 1`] = `
+<styled.div
+  onClick={[Function]}
+  showed={false}
+/>
+`;
+
+exports[`Card should render correctly showed 1`] = `
+<styled.div
+  onClick={[Function]}
+  showed={true}
+>
+  A
+</styled.div>
+`;
