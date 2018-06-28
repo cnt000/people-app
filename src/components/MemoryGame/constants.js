@@ -1,4 +1,5 @@
 export const LOAD_CARDS = 'people-app/MemoryGame/LOAD_CARDS';
+export const START_GAME = 'people-app/MemoryGame/START_GAME';
 export const SHOW_CARD = 'people-app/MemoryGame/SHOW_CARD';
 export const CHECK_SELECTED_CARDS = 'CHECK_SELECTED_CARDS';
 export const PONG = 'PONG';

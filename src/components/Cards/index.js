@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types'
 import styled, { keyframes } from "styled-components"
+import MemoryGameStart from "../MemoryGameStart"
 import Card from "../Card"
 
 const gradient = keyframes`
@@ -39,19 +40,22 @@ const Li = styled.li`
   padding: 0;
 `
 
-const Cards = ({ cards, showCard }) => (
+const Cards = ({ cards, isPlaying, showCard, startGame }) => (
   <Div>
-    <Ul>
-      {cards && cards.map((card, position) =>
-        <Li key={position}>
-          <Card
-            value={card.value}
-            showed={card.showed}
-            onClick={() => showCard(position)}
-          />
-        </Li>
-      )}
-    </Ul>
+    {!isPlaying && <MemoryGameStart onClick={() => startGame()} />}
+    {isPlaying &&
+      <Ul>
+        {cards && cards.map((card, position) =>
+          <Li key={position}>
+            <Card
+              value={card.value}
+              showed={card.showed}
+              onClick={() => showCard(position)}
+            />
+          </Li>
+        )}
+      </Ul>
+    }
   </Div>
 )
 

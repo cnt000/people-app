@@ -2,17 +2,20 @@ import { connect } from 'react-redux'
 
 import Cards from "../Cards"
 import { 
-  showCard
+  showCard,
+  startGame
 } from "./actions"
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    cards: state.memoryGameReducer.cards
+    cards: state.memoryGameReducer.cards,
+    isPlaying: state.memoryGameReducer.playing
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  showCard: id => dispatch(showCard(id))
+  showCard: id => dispatch(showCard(id)),
+  startGame: () => dispatch(startGame())
 })
 
 const MemoryGame = connect(

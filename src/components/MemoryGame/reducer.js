@@ -1,4 +1,5 @@
 import {
+  START_GAME,
   LOAD_CARDS,
   SHOW_CARD,
   CHECK_SELECTED_CARDS
@@ -26,6 +27,8 @@ function cardClicked(state, action) {
 
 export function memoryGameReducer(state = defaultState, action) {
   switch (action.type) {
+    case START_GAME:
+      return { ...state, playing: true }
     case LOAD_CARDS:
       return state
     case SHOW_CARD:

@@ -1,6 +1,7 @@
 import {
   LOAD_CARDS,
-  SHOW_CARD
+  SHOW_CARD,
+  START_GAME
 } from './constants';
 
 export function loadCards() {
@@ -13,5 +14,11 @@ export function showCard(cardPosition) {
   return {
     type: SHOW_CARD,
     cardPosition
+  }
+}
+
+export function startGame() {
+  return {
+    type: START_GAME
   }
 }
