@@ -61,8 +61,7 @@ Cards.propTypes = {
       value: PropTypes.string.isRequired,
       showed: PropTypes.bool.isRequired
     }).isRequired
-  ).isRequired,
-  onCardClick: PropTypes.func.isRequired
+  ).isRequired
 }
 
 export default Cards
