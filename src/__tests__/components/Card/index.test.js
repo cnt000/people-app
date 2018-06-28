@@ -25,11 +25,12 @@ describe('Card', () => {
   });
 
   it('fire an onClick', () => {
+    let onClickFunction_spy = jasmine.createSpy('onClickFunction');
     const output = shallow(
-      <Card value={"A"} showed={true} onClick={() => alert('click')} />
+      <Card value={"A"} showed={true} onClick={() => onClickFunction_spy('click')} />
     );
     output.simulate('click');
-    expect(window.alert).toHaveBeenCalledWith('click');
+    expect(onClickFunction_spy).toHaveBeenCalledWith('click');
     expect(shallowToJson(output)).toMatchSnapshot();
   });
 
