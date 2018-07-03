@@ -40,7 +40,7 @@ const Li = styled.li`
   padding: 0;
 `
 
-const Cards = ({ cards, isPlaying, showCard, startGame }) => (
+const Cards = ({ cards, isPlaying, showCard, startGame, isClickable }) => (
   <Div>
     {!isPlaying && <MemoryGameStart onClick={() => startGame()} />}
     {isPlaying &&
@@ -50,7 +50,7 @@ const Cards = ({ cards, isPlaying, showCard, startGame }) => (
             <Card
               value={card.value}
               showed={card.showed}
-              onClick={() => showCard(position)}
+              onClick={() => (isClickable) ? showCard(position) : ''}
             />
           </Li>
         )}

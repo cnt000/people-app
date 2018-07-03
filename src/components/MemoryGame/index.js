@@ -9,7 +9,8 @@ import {
 const mapStateToProps = (state, ownProps) => {
   return {
     cards: state.memoryGameReducer.cards,
-    isPlaying: state.memoryGameReducer.playing
+    isPlaying: state.memoryGameReducer.playing,
+    isClickable: !state.memoryGameReducer.checking
   }
 }
 
