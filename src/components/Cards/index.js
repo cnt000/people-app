@@ -45,6 +45,10 @@ class Cards extends React.Component {
     return (
       <Div>
         <h1>gameStateId: {this.props.gameStateId}</h1>
+
+        {(this.props.gameStateId === 5) && (
+          <p>HAI VINTO!!!!</p>
+        )}
         {!this.props.isPlaying && (
           <MemoryGameStart onClick={() => this.props.startGame()} />
         )}

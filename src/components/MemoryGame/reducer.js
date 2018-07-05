@@ -11,7 +11,7 @@ import defaultState from "../../defaultState"
 export function memoryGameReducer(state = defaultState, action) {
   switch (action.type) {
     case START_GAME:
-      return { ...state, playing: true, checking: false, gameStateId: 0 }
+      return { ...state, playing: true, checking: false, gameStateId: 0, cards: state.cards.map(card=>({ ...card, showed: false })) }
     case LOAD_CARDS:
       return state
     case SHOW_CARD:
@@ -20,10 +20,11 @@ export function memoryGameReducer(state = defaultState, action) {
         nextGameStateId = 1
       } else if (state.gameStateId === 1) {
         nextGameStateId = 2
-      } else if (state.gameStateId > 2) {
-        //caso 3 e 4 da cancellare?
+      } else if ([3,4].includes(state.gameStateId)) {
         nextGameStateId = 1
       }
+      nextGameStateId = (state.cards.filter((val)=>!val.showed).length > 1)
+        ? nextGameStateId : 5;
       return {
         ...state,
         gameStateId: nextGameStateId,
