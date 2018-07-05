@@ -3,20 +3,22 @@ import { connect } from 'react-redux'
 import Cards from "../Cards"
 import { 
   showCard,
-  startGame
+  startGame,
+  checkCouple,
 } from "./actions"
 
 const mapStateToProps = (state, ownProps) => {
   return {
     cards: state.memoryGameReducer.cards,
     isPlaying: state.memoryGameReducer.playing,
-    isClickable: !state.memoryGameReducer.checking
+    gameStateId: state.memoryGameReducer.gameStateId
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   showCard: id => dispatch(showCard(id)),
-  startGame: () => dispatch(startGame())
+  startGame: () => dispatch(startGame()),
+  checkCouple: (gameStateId) => (gameStateId === 2) ? dispatch(checkCouple()) : '',
 })
 
 const MemoryGame = connect(

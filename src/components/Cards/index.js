@@ -1,5 +1,5 @@
 import React from "react"
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 import styled, { keyframes } from "styled-components"
 import MemoryGameStart from "../MemoryGameStart"
 import Card from "../Card"
@@ -20,11 +20,11 @@ const Div = styled.div`
   width: 90vw;
   height: 90vh;
   border: 1px solid black;
-  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 170% 100%;
   animation: ${gradient} 15s ease infinite;
   border-radius: 0.25em;
-  padding: .4em;
+  padding: 0.4em;
 `
 
 const Ul = styled.ul`
@@ -40,24 +40,37 @@ const Li = styled.li`
   padding: 0;
 `
 
-const Cards = ({ cards, isPlaying, showCard, startGame, isClickable }) => (
-  <Div>
-    {!isPlaying && <MemoryGameStart onClick={() => startGame()} />}
-    {isPlaying &&
-      <Ul>
-        {cards && cards.map((card, position) =>
-          <Li key={position}>
-            <Card
-              value={card.value}
-              showed={card.showed}
-              onClick={() => (isClickable) ? showCard(position) : ''}
-            />
-          </Li>
+class Cards extends React.Component {
+  render() {
+    return (
+      <Div>
+        <h1>gameStateId: {this.props.gameStateId}</h1>
+        {!this.props.isPlaying && (
+          <MemoryGameStart onClick={() => this.props.startGame()} />
         )}
-      </Ul>
-    }
-  </Div>
-)
+        {this.props.isPlaying && (
+          <Ul>
+            {this.props.cards &&
+              this.props.cards.map((card, position) => (
+                <Li key={position}>
+                  <Card
+                    value={card.value}
+                    showed={card.showed}
+                    onClick={() =>
+                      this.props.gameStateId === 0 ||
+                      this.props.gameStateId === 1
+                        ? this.props.showCard(position)
+                        : ""
+                    }
+                  />
+                </Li>
+              ))}
+          </Ul>
+        )}
+      </Div>
+    )
+  }
+}
 
 Cards.propTypes = {
   cards: PropTypes.arrayOf(

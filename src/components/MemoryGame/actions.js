@@ -1,6 +1,7 @@
 import {
   LOAD_CARDS,
   SHOW_CARD,
+  CHECK_COUPLE,
   START_GAME
 } from './constants';
 
@@ -20,5 +21,11 @@ export function showCard(cardPosition) {
 export function startGame() {
   return {
     type: START_GAME
+  }
+}
+
+export function checkCouple() {
+  return {
+    type: CHECK_COUPLE
   }
 }

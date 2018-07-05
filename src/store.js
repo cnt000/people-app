@@ -2,10 +2,14 @@ import { createStore, applyMiddleware, compose, combineReducers } from "redux"
 import { routerMiddleware, routerReducer } from "react-router-redux"
 import createHistory from "history/createBrowserHistory"
 import { combineEpics, createEpicMiddleware } from "redux-observable"
-import { memoryGameEpic, memoryGameHideEpic } from './components/MemoryGame/epic'
+import {
+  memoryGameShowCardEpic,
+  memoryGameCleanSelectedEpic,
+  memoryGameHideCoupleEpic
+} from "./components/MemoryGame/epic"
 import { memoryGameReducer } from "./components/MemoryGame/reducer"
 
-export const history = createHistory();
+export const history = createHistory()
 
 const initialState = {}
 const enhancers = []
@@ -27,14 +31,18 @@ const reducer = combineReducers({
 })
 
 export const rootEpic = combineEpics(
-  memoryGameEpic,
-  memoryGameHideEpic
+  memoryGameShowCardEpic,
+  memoryGameCleanSelectedEpic,
+  memoryGameHideCoupleEpic
 )
 
-const composedEnhancers = compose(applyMiddleware(...middleware), ...enhancers)
+const composedEnhancers = compose(
+  applyMiddleware(...middleware),
+  ...enhancers
+)
 
 const store = createStore(reducer, initialState, composedEnhancers)
 
-epicMiddleware.run(rootEpic);
+epicMiddleware.run(rootEpic)
 
 export default store
