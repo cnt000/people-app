@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Navbar, Button } from "react-bootstrap"
-import baseStyles from './base-styles'
+import baseStyles from "./base-styles"
 import "./App.css"
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import Auth from "../../modules/Auth/Auth.js"
+import Auth from '../../modules/Auth/Auth.js'
 
 const auth = new Auth()
 

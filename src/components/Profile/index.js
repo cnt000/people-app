@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { ControlLabel } from "react-bootstrap"
-import "./Profile.css"
+import React, { Component } from 'react'
+import { ControlLabel } from 'react-bootstrap'
+import './Profile.css'
 
 class Profile extends Component {
   componentWillMount() {

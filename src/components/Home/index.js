@@ -1,5 +1,5 @@
-import React from "react"
-import MemoryGame from "../MemoryGame";
+import React from 'react'
+import MemoryGame from '../MemoryGame'
 
 const Home = props => (
   <div>

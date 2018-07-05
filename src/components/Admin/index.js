@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import { Button } from "react-bootstrap"
-import { API_URL } from "../../constants"
-import axios from "axios"
+import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
+import { API_URL } from '../../constants'
+import axios from 'axios'
 
 class Admin extends Component {
   componentWillMount() {
-    this.setState({ message: "" })
+    this.setState({ message: '' })
   }
   adminPing() {
     const { getAccessToken } = this.props.auth

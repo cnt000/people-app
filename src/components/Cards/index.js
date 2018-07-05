@@ -1,8 +1,8 @@
-import React from "react"
-import PropTypes from "prop-types"
-import styled, { keyframes } from "styled-components"
-import MemoryGameStart from "../MemoryGameStart"
-import Card from "../Card"
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { keyframes } from 'styled-components'
+import MemoryGameStart from '../MemoryGameStart'
+import Card from '../Card'
 
 const gradient = keyframes`
   0% {
@@ -39,50 +39,40 @@ const Li = styled.li`
   margin: 0;
   padding: 0;
 `
+const Cards = ({ cards, gameStateId, isPlaying, startGame, showCard }) => (
+  <Div>
+    <h1>gameStateId: {gameStateId}</h1>
 
-class Cards extends React.Component {
-  render() {
-    return (
-      <Div>
-        <h1>gameStateId: {this.props.gameStateId}</h1>
-
-        {(this.props.gameStateId === 5) && (
-          <p>HAI VINTO!!!!</p>
-        )}
-        {!this.props.isPlaying && (
-          <MemoryGameStart onClick={() => this.props.startGame()} />
-        )}
-        {this.props.isPlaying && (
-          <Ul>
-            {this.props.cards &&
-              this.props.cards.map((card, position) => (
-                <Li key={position}>
-                  <Card
-                    value={card.value}
-                    showed={card.showed}
-                    onClick={() =>
-                      this.props.gameStateId === 0 ||
-                      this.props.gameStateId === 1
-                        ? this.props.showCard(position)
-                        : ""
-                    }
-                  />
-                </Li>
-              ))}
-          </Ul>
-        )}
-      </Div>
-    )
-  }
-}
+    {gameStateId === 5 && <p>HAI VINTO!!!!</p>}
+    {!isPlaying && <MemoryGameStart onClick={() => startGame()} />}
+    {isPlaying && (
+      <Ul>
+        {cards &&
+          cards.map((card, position) => (
+            <Li key={position}>
+              <Card
+                value={card.value}
+                showed={card.showed}
+                onClick={() =>
+                  gameStateId === 0 || gameStateId === 1
+                    ? showCard(position)
+                    : ''
+                }
+              />
+            </Li>
+          ))}
+      </Ul>
+    )}
+  </Div>
+)
 
 Cards.propTypes = {
   cards: PropTypes.arrayOf(
     PropTypes.shape({
       value: PropTypes.string.isRequired,
-      showed: PropTypes.bool.isRequired
+      showed: PropTypes.bool.isRequired,
     }).isRequired
-  ).isRequired
+  ).isRequired,
 }
 
 export default Cards

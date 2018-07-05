@@ -1,11 +1,11 @@
-import React, { Component } from "react"
-import { Button } from "react-bootstrap"
-import { API_URL } from "../../constants"
-import axios from "axios"
+import React, { Component } from 'react'
+import { Button } from 'react-bootstrap'
+import { API_URL } from '../../constants'
+import axios from 'axios'
 
 class Ping extends Component {
   componentWillMount() {
-    this.setState({ message: "" })
+    this.setState({ message: '' })
   }
   ping() {
     axios
@@ -30,7 +30,7 @@ class Ping extends Component {
         {!isAuthenticated() && (
           <p>Log in to call a private (secured) server endpoint.</p>
         )}
-        <Button onClick={this.ping.bind(this)}>Ping</Button>{" "}
+        <Button onClick={this.ping.bind(this)}>Ping</Button>{' '}
         {isAuthenticated() && (
           <Button onClick={this.securedPing.bind(this)}>Call Private</Button>
         )}

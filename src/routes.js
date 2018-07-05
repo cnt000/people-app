@@ -1,15 +1,15 @@
-import React from "react"
-import { Redirect, Route, Router } from "react-router-dom"
-import App from "./components/App"
-import Home from "./components/Home"
-import Callback from "./components/Callback"
-import Auth from "./modules/Auth/Auth"
-import history from "./modules/History/history"
-import AboutUs from "./components/AboutUs"
-import Topics from "./components/Topics"
-import Ping from "./components/Ping"
-import Profile from "./components/Profile"
-import Admin from "./components/Admin"
+import React from 'react'
+import { Redirect, Route, Router } from 'react-router-dom'
+import App from './components/App'
+import Home from './components/Home'
+import Callback from './components/Callback'
+import Auth from './modules/Auth/Auth'
+import history from './modules/History/history'
+import AboutUs from './components/AboutUs'
+import Topics from './components/Topics'
+import Ping from './components/Ping'
+import Profile from './components/Profile'
+import Admin from './components/Admin'
 
 const auth = new Auth()
 
@@ -63,7 +63,7 @@ export const makeMainRoutes = () => {
         <Route
           path="/admin"
           render={props =>
-            !auth.isAuthenticated() || !auth.userHasScopes(["write:ping"]) ? (
+            !auth.isAuthenticated() || !auth.userHasScopes(['write:ping']) ? (
               <Redirect to="/home" />
             ) : (
               <Admin auth={auth} {...props} />

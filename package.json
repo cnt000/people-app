@@ -33,6 +33,7 @@
     "client:start": "react-scripts start",
     "server:start": "node api/index.js",
     "build": "react-scripts build",
+    "format": "prettier --single-quote --no-semi --trailing-comma es5 --write './**/*.js'",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
@@ -45,11 +46,14 @@
     "@storybook/addons": "^3.4.6",
     "@storybook/react": "^3.4.6",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
     "babel-runtime": "^6.26.0",
+    "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.4",
+    "eslint-plugin-babel": "^5.1.0",
     "jest": "^23.2.0",
-    "enzyme": "^3.3.0",
+    "prettier": "^1.13.7",
     "react-addons-test-utils": "^15.6.2",
     "react-test-renderer": "^16.3.2"
   }

@@ -4,10 +4,6 @@ const styles = {
   textAlign: 'center',
 }
 
-const Center = ({ children }) => (
-  <div style={styles}>
-    { children }
-  </div>
-)
+const Center = ({ children }) => <div style={styles}>{children}</div>
 
 export default Center
