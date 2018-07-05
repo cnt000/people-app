@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import { Navbar, Button } from "react-bootstrap"
-import baseStyles from "./base-styles"
-import "./App.css"
+import React, { Component } from 'react'
+import { Navbar, Button } from 'react-bootstrap'
+import baseStyles from './base-styles'
+import './App.css'
 
 class App extends Component {
   goTo(route) {
@@ -25,13 +25,13 @@ class App extends Component {
           <Navbar.Header>
             <Button
               className="btn-margin"
-              onClick={this.goTo.bind(this, "home")}
+              onClick={this.goTo.bind(this, 'home')}
             >
               Home
             </Button>
             <Button
               className="btn-margin"
-              onClick={this.goTo.bind(this, "ping")}
+              onClick={this.goTo.bind(this, 'ping')}
             >
               Ping
             </Button>
@@ -43,7 +43,7 @@ class App extends Component {
             {isAuthenticated() && (
               <Button
                 className="btn-margin"
-                onClick={this.goTo.bind(this, "profile")}
+                onClick={this.goTo.bind(this, 'profile')}
               >
                 Profile
               </Button>
@@ -54,24 +54,24 @@ class App extends Component {
               </Button>
             )}
             {isAuthenticated() &&
-              userHasScopes(["write:ping"]) && (
+              userHasScopes(['write:ping']) && (
                 <Button
                   bsStyle="primary"
                   className="btn-margin"
-                  onClick={this.goTo.bind(this, "admin")}
+                  onClick={this.goTo.bind(this, 'admin')}
                 >
                   Admin
                 </Button>
               )}
             <Button
               className="btn-margin"
-              onClick={this.goTo.bind(this, "topics")}
+              onClick={this.goTo.bind(this, 'topics')}
             >
               Topics
             </Button>
             <Button
               className="btn-margin"
-              onClick={this.goTo.bind(this, "about")}
+              onClick={this.goTo.bind(this, 'about')}
             >
               About us
             </Button>

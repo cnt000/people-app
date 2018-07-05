@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
-import MemoryGameStart from '../MemoryGameStart'
-import Card from '../Card'
+import ButtonStart from './button-start'
+import Card from './card'
 
 const gradient = keyframes`
   0% {
@@ -25,6 +25,7 @@ const Div = styled.div`
   animation: ${gradient} 15s ease infinite;
   border-radius: 0.25em;
   padding: 0.4em;
+  margin: 0 auto;
 `
 
 const Ul = styled.ul`
@@ -39,12 +40,19 @@ const Li = styled.li`
   margin: 0;
   padding: 0;
 `
-const Cards = ({ cards, gameStateId, isPlaying, startGame, showCard }) => (
+const Cards = ({
+  cards,
+  gameStateId,
+  hasWin,
+  isPlaying,
+  startGame,
+  showCard,
+}) => (
   <Div>
     <h1>gameStateId: {gameStateId}</h1>
 
-    {gameStateId === 5 && <p>HAI VINTO!!!!</p>}
-    {!isPlaying && <MemoryGameStart onClick={() => startGame()} />}
+    {hasWin && <p>HAI VINTO!!!!</p>}
+    {!isPlaying && <ButtonStart onClick={() => startGame()} />}
     {isPlaying && (
       <Ul>
         {cards &&

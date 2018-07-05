@@ -7,7 +7,7 @@ const Div = styled.div`
   text-align: center;
 `
 
-const MemoryGameStart = ({ onClick }) => {
+const ButtonStart = ({ onClick }) => {
   return (
     <Div onClick={onClick}>
       <h1>Memory Game</h1>
@@ -16,8 +16,8 @@ const MemoryGameStart = ({ onClick }) => {
   )
 }
 
-MemoryGameStart.propTypes = {
+ButtonStart.propTypes = {
   onClick: PropTypes.func.isRequired,
 }
 
-export default MemoryGameStart
+export default ButtonStart

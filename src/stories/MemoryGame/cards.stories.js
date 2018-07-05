@@ -1,9 +1,8 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import '@storybook/addon-viewport/register'
 
-import Cards from '../../components/Cards'
+import Cards from '../../components/MemoryGame/cards'
 import defaultState from '../../defaultState'
 
 const cards_two = [

@@ -1,67 +1,33 @@
 const cards = [
-  {
-    value: 'AAA',
-    showed: false,
-  },
-  {
-    value: 'BBB',
-    showed: false,
-  },
-  {
-    value: 'ZZZ',
-    showed: false,
-  },
-  {
-    value: 'ZZZ',
-    showed: false,
-  },
-  {
-    value: 'YYY',
-    showed: false,
-  },
-  {
-    value: 'YYY',
-    showed: false,
-  },
-  {
-    value: 'XXX',
-    showed: false,
-  },
-  {
-    value: 'XXX',
-    showed: false,
-  },
-  {
-    value: 'CCC',
-    showed: false,
-  },
-  {
-    value: 'DDD',
-    showed: false,
-  },
-  {
-    value: 'AAA',
-    showed: false,
-  },
-  {
-    value: 'BBB',
-    showed: false,
-  },
-  {
-    value: 'CCC',
-    showed: false,
-  },
-  {
-    value: 'DDD',
-    showed: false,
-  },
+  'AAA',
+  'BBB',
+  'YYY',
+  'XXX',
+  'YYY',
+  'XXX',
+  'CCC',
+  'AAA',
+  'DDD',
+  'BBB',
+  'CCC',
+  'DDD',
 ]
 
+// https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+function shuffleArray(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1))
+    var temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+  return array
+}
+
 const gameState = {
-  playing: false,
   gameStateId: -1,
   selectedCards: [],
-  cards,
+  cards: shuffleArray(cards.map(val => ({ value: val, showed: false }))),
 }
 
 export default gameState

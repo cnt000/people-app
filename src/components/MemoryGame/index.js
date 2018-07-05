@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-
-import Cards from '../Cards'
+import Cards from './cards'
 import { showCard, startGame, checkCouple } from './actions'
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
     cards: state.memoryGameReducer.cards,
     isPlaying: [0, 1, 2, 3, 4].includes(state.memoryGameReducer.gameStateId),
+    hasWin: [5].includes(state.memoryGameReducer.gameStateId),
     gameStateId: state.memoryGameReducer.gameStateId,
   }
 }

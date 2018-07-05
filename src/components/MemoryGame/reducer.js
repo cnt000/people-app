@@ -13,7 +13,6 @@ export function memoryGameReducer(state = defaultState, action) {
     case START_GAME:
       return {
         ...state,
-        playing: true,
         checking: false,
         gameStateId: 0,
         cards: state.cards.map(card => ({ ...card, showed: false })),
