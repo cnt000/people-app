@@ -1,11 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MemoryGameStart should render correctly with snapshot 1`] = `
-<styled.div>
-  <button
-    onClick={[Function]}
-  >
-    Start Game
-  </button>
+<styled.div
+  onClick={[Function]}
+>
+  <h1>
+    Memory Game
+  </h1>
+  <p>
+    Click to start
+  </p>
 </styled.div>
 `;
