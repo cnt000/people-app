@@ -3,8 +3,8 @@ import {
   LOAD_CARDS,
   SHOW_CARD,
   CHECK_COUPLE,
-  HIDE_COUPLE,
-  CLEAN_SELECTED
+  INVALID_COUPLE,
+  VALID_COUPLE
 } from "./constants"
 import defaultState from "../../defaultState"
 
@@ -49,10 +49,10 @@ export function memoryGameReducer(state = defaultState, action) {
             ? 3
             : 4
       }
-    case CLEAN_SELECTED:
+    case VALID_COUPLE:
       console.log("CLEAN_SELECTED")
       return { ...state, gameStateId: 0, selectedCards: [] }
-    case HIDE_COUPLE:
+    case INVALID_COUPLE:
       console.log("HIDE_COUPLE")
       return {
         ...state,

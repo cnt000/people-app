@@ -5,8 +5,8 @@ import "rxjs/add/operator/filter"
 import {
   SHOW_CARD,
   CHECK_COUPLE,
-  CLEAN_SELECTED,
-  HIDE_COUPLE
+  INVALID_COUPLE,
+  VALID_COUPLE
 } from "./constants"
 
 export const memoryGameShowCardEpic = (action$, state$) => {
@@ -20,7 +20,7 @@ export const memoryGameCleanSelectedEpic = (action$, state$) => {
   return action$
     .ofType(CHECK_COUPLE)
     .filter(() => state$.value.memoryGameReducer.gameStateId === 3)
-    .mapTo({ type: CLEAN_SELECTED })
+    .mapTo({ type: VALID_COUPLE })
 }
 
 export const memoryGameHideCoupleEpic = (action$, state$) => {
@@ -28,5 +28,5 @@ export const memoryGameHideCoupleEpic = (action$, state$) => {
     .ofType(CHECK_COUPLE)
     .filter(() => state$.value.memoryGameReducer.gameStateId === 4)
     .delay(4000)
-    .mapTo({ type: HIDE_COUPLE })
+    .mapTo({ type: INVALID_COUPLE })
 }
