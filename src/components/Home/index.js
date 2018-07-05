@@ -1,11 +1,9 @@
 import React from 'react'
-import MemoryGame from '../MemoryGame'
 
-const Home = props => (
+const Home = () => (
   <div>
     <h1>Home</h1>
     <p>Welcome home!</p>
-    <MemoryGame />
   </div>
 )
 

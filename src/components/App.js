@@ -31,6 +31,12 @@ class App extends Component {
             </Button>
             <Button
               className="btn-margin"
+              onClick={this.goTo.bind(this, 'memory-game')}
+            >
+              Memory Game
+            </Button>
+            <Button
+              className="btn-margin"
               onClick={this.goTo.bind(this, 'ping')}
             >
               Ping

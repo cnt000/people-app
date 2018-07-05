@@ -10,6 +10,7 @@ import Topics from './components/Topics'
 import Ping from './components/Ping'
 import Profile from './components/Profile'
 import Admin from './components/Admin'
+import MemoryGame from './components/MemoryGame'
 
 const auth = new Auth()
 
@@ -25,6 +26,7 @@ export const makeMainRoutes = () => {
       <div>
         <Route path="/" render={props => <App auth={auth} {...props} />} />
         <Route path="/home" render={props => <Home auth={auth} {...props} />} />
+        <Route path="/memory-game" render={props => <MemoryGame {...props} />} />
         <Route
           path="/about"
           render={props => <AboutUs auth={auth} {...props} />}
