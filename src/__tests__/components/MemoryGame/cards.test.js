@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Cards from '../../../components/Cards'
+import Cards from '../../../components/MemoryGame/cards'
 import { shallow } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 import defaulState from '../../../defaultState'
@@ -17,7 +17,7 @@ describe('Cards', () => {
   //     value: "DDD",
   //     showed: false
   //   }]} />);
-  //   const value = <ul></ul>;
+  //   const value = 'DDD';
   //   expect(wrapper.contains(value)).toEqual(true);
   // });
 

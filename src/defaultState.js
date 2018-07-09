@@ -1,17 +1,4 @@
-const cards = [
-  'AAA',
-  'BBB',
-  'YYY',
-  'XXX',
-  'YYY',
-  'XXX',
-  'CCC',
-  'AAA',
-  'DDD',
-  'BBB',
-  'CCC',
-  'DDD',
-]
+const cards = ['AAA', 'BBB', 'AAA', 'DDD', 'BBB', 'DDD']
 
 // https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffleArray(array) {
@@ -25,7 +12,6 @@ function shuffleArray(array) {
 }
 
 const gameState = {
-  gameStateId: -1,
   selectedCards: [],
   cards: shuffleArray(cards.map(val => ({ value: val, showed: false }))),
 }

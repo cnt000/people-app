@@ -26,7 +26,10 @@ export const makeMainRoutes = () => {
       <div>
         <Route path="/" render={props => <App auth={auth} {...props} />} />
         <Route path="/home" render={props => <Home auth={auth} {...props} />} />
-        <Route path="/memory-game" render={props => <MemoryGame {...props} />} />
+        <Route
+          path="/memory-game"
+          render={props => <MemoryGame {...props} />}
+        />
         <Route
           path="/about"
           render={props => <AboutUs auth={auth} {...props} />}

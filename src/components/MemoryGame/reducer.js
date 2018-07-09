@@ -5,6 +5,12 @@ import {
   CHECK_COUPLE,
   INVALID_COUPLE,
   VALID_COUPLE,
+  PLAYING_STATE,
+  FIRST_OF_COUPLE_STATE,
+  SECOND_OF_COUPLE_STATE,
+  CORRECT_COUPLE_STATE,
+  INCORRECT_COUPLE_STATE,
+  FINISHED_GAME_STATE,
 } from './constants'
 import defaultState from '../../defaultState'
 
@@ -13,67 +19,93 @@ export function memoryGameReducer(state = defaultState, action) {
     case START_GAME:
       return {
         ...state,
-        checking: false,
-        gameStateId: 0,
+        gameState: PLAYING_STATE,
         cards: state.cards.map(card => ({ ...card, showed: false })),
       }
+
     case LOAD_CARDS:
       return state
+
     case SHOW_CARD:
-      let nextGameStateId = 0
-      if (state.gameStateId === 0) {
-        nextGameStateId = 1
-      } else if (state.gameStateId === 1) {
-        nextGameStateId = 2
-      } else if ([3, 4].includes(state.gameStateId)) {
-        nextGameStateId = 1
-      }
-      nextGameStateId =
-        state.cards.filter(val => !val.showed).length > 1 ? nextGameStateId : 5
       return {
         ...state,
-        gameStateId: nextGameStateId,
+        gameState:
+          state.cards.filter(val => !val.showed).length > 1
+            ? getNextGameState(state.gameState)
+            : FINISHED_GAME_STATE,
         selectedCards: [action.cardPosition, ...state.selectedCards],
-        cards: state.cards.map(
-          (elm, i) =>
-            i === action.cardPosition
-              ? {
-                  ...elm,
-                  showed: true,
-                }
-              : elm
-        ),
+        cards: showClickedCard(state.cards, action.cardPosition),
       }
+
     case CHECK_COUPLE:
-      console.log('CHECK_COUPLE')
+      const firstCardPosition = state.selectedCards[0]
+      const secondCartPosition = state.selectedCards[1]
+      const isCoupleEqual = equal(
+        state.cards[firstCardPosition].value,
+        state.cards[secondCartPosition].value
+      )
       return {
         ...state,
-        gameStateId:
-          state.cards[state.selectedCards[0]].value ===
-          state.cards[state.selectedCards[1]].value
-            ? 3
-            : 4,
+        gameState: isCoupleEqual
+          ? CORRECT_COUPLE_STATE
+          : INCORRECT_COUPLE_STATE,
       }
+
     case VALID_COUPLE:
-      console.log('CLEAN_SELECTED')
-      return { ...state, gameStateId: 0, selectedCards: [] }
+      return { ...state, gameState: PLAYING_STATE, selectedCards: [] }
+
     case INVALID_COUPLE:
-      console.log('HIDE_COUPLE')
       return {
         ...state,
-        gameStateId: 0,
+        gameState: PLAYING_STATE,
         selectedCards: [],
-        cards: state.cards.map(
-          (elm, i) =>
-            state.selectedCards.includes(i)
-              ? {
-                  ...elm,
-                  showed: false,
-                }
-              : elm
-        ),
+        cards: hideCards(state.cards, state.selectedCards),
       }
+
     default:
       return state
   }
+}
+
+function equal(a, b) {
+  return a === b
+}
+
+function getNextGameState(gameState) {
+  let nextGameState = PLAYING_STATE
+  if (gameState === PLAYING_STATE) {
+    nextGameState = FIRST_OF_COUPLE_STATE
+  } else if (gameState === FIRST_OF_COUPLE_STATE) {
+    nextGameState = SECOND_OF_COUPLE_STATE
+  } else if (
+    gameState === CORRECT_COUPLE_STATE ||
+    gameState === INCORRECT_COUPLE_STATE
+  ) {
+    nextGameState = FIRST_OF_COUPLE_STATE
+  }
+  return nextGameState
+}
+
+function showClickedCard(cards, cardPosition) {
+  return cards.map(
+    (elm, i) =>
+      i === cardPosition
+        ? {
+            ...elm,
+            showed: true,
+          }
+        : elm
+  )
+}
+
+function hideCards(cards, selectedCards) {
+  return cards.map(
+    (elm, i) =>
+      selectedCards.includes(i)
+        ? {
+            ...elm,
+            showed: false,
+          }
+        : elm
+  )
 }

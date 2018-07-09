@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MemoryGameStart should render correctly with snapshot 1`] = `
+exports[`ButtonStart should render correctly with snapshot 1`] = `
 <styled.div
   onClick={[Function]}
 >

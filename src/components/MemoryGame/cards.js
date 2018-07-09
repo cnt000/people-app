@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import ButtonStart from './button-start'
 import Card from './card'
+import { PLAYING_STATE, FIRST_OF_COUPLE_STATE } from './constants'
 
 const gradient = keyframes`
   0% {
@@ -42,14 +43,14 @@ const Li = styled.li`
 `
 const Cards = ({
   cards,
-  gameStateId,
+  gameState,
   hasWin,
   isPlaying,
   startGame,
   showCard,
 }) => (
   <Div>
-    <h1>gameStateId: {gameStateId}</h1>
+    <h1>gameState: {gameState}</h1>
 
     {hasWin && <p>HAI VINTO!!!!</p>}
     {!isPlaying && <ButtonStart onClick={() => startGame()} />}
@@ -62,7 +63,8 @@ const Cards = ({
                 value={card.value}
                 showed={card.showed}
                 onClick={() =>
-                  gameStateId === 0 || gameStateId === 1
+                  gameState === PLAYING_STATE ||
+                  gameState === FIRST_OF_COUPLE_STATE
                     ? showCard(position)
                     : ''
                 }

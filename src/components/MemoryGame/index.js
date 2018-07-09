@@ -1,21 +1,34 @@
 import { connect } from 'react-redux'
 import Cards from './cards'
 import { showCard, startGame, checkCouple } from './actions'
+import {
+  PLAYING_STATE,
+  FINISHED_GAME_STATE,
+  FIRST_OF_COUPLE_STATE,
+  SECOND_OF_COUPLE_STATE,
+  CORRECT_COUPLE_STATE,
+  INCORRECT_COUPLE_STATE,
+} from './constants'
 
 const mapStateToProps = state => {
   return {
     cards: state.memoryGameReducer.cards,
-    isPlaying: [0, 1, 2, 3, 4].includes(state.memoryGameReducer.gameStateId),
-    hasWin: [5].includes(state.memoryGameReducer.gameStateId),
-    gameStateId: state.memoryGameReducer.gameStateId,
+    isPlaying:
+      state.memoryGameReducer.gameState === PLAYING_STATE ||
+      state.memoryGameReducer.gameState === FIRST_OF_COUPLE_STATE ||
+      state.memoryGameReducer.gameState === SECOND_OF_COUPLE_STATE ||
+      state.memoryGameReducer.gameState === CORRECT_COUPLE_STATE ||
+      state.memoryGameReducer.gameState === INCORRECT_COUPLE_STATE,
+    hasWin: state.memoryGameReducer.gameState === FINISHED_GAME_STATE,
+    gameState: state.memoryGameReducer.gameState,
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   showCard: id => dispatch(showCard(id)),
   startGame: () => dispatch(startGame()),
-  checkCouple: gameStateId =>
-    gameStateId === 2 ? dispatch(checkCouple()) : '',
+  checkCouple: gameState =>
+    gameState === SECOND_OF_COUPLE_STATE ? dispatch(checkCouple()) : '',
 })
 
 const MemoryGame = connect(

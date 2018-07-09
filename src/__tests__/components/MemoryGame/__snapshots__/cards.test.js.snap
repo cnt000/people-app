@@ -3,9 +3,9 @@
 exports[`Cards should render correctly empty 1`] = `
 <styled.div>
   <h1>
-    gameStateId: 
+    gameState: 
   </h1>
-  <MemoryGameStart
+  <ButtonStart
     onClick={[Function]}
   />
 </styled.div>
@@ -14,9 +14,9 @@ exports[`Cards should render correctly empty 1`] = `
 exports[`Cards should render correctly with snapshot 1`] = `
 <styled.div>
   <h1>
-    gameStateId: 
+    gameState: 
   </h1>
-  <MemoryGameStart
+  <ButtonStart
     onClick={[Function]}
   />
 </styled.div>
