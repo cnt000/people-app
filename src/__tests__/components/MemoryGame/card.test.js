@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Card from '../../../components/MemoryGame/card'
-import { shallow } from 'enzyme'
+import { shallow, mount } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 
 describe('Card', () => {
@@ -49,4 +49,20 @@ describe('Card', () => {
     )
     expect(shallowToJson(output)).toMatchSnapshot()
   })
+
+  // it('should render white if showed', () => {
+  //   const output = mount(<Card value={'B'} showed={true} onClick={() => console.log('click')} />)
+  //   expect(output).toHaveProperty('background', 'white')
+  // })
+
+  it('should render value if showed', () => {
+    const output = mount(<Card value={'B'} showed={true} onClick={() => console.log('click')} />)
+    expect(output.text()).toContain('B')
+  })
+
+  // it('should render not white if not showed', () => {
+  //   const output = mount(<Card value={'B'} showed={false} onClick={() => console.log('click')} />)
+  //   expect(output).not.toHaveProperty('background', 'white')
+  // })
+
 })
