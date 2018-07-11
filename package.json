@@ -2,6 +2,25 @@
   "name": "people-app",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!<rootDir>/node_modules/",
+      "!src/stories/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ],
+    "snapshotSerializers": []
+  },
   "dependencies": {
     "auth0-js": "^9.5.0",
     "axios": "^0.18.0",
@@ -35,6 +54,7 @@
     "build": "react-scripts build",
     "format": "prettier --single-quote --no-semi --trailing-comma es5 --write './**/*.js'",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
