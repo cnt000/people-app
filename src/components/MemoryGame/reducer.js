@@ -6,12 +6,11 @@ import {
   INVALID_COUPLE,
   VALID_COUPLE,
   PLAYING_STATE,
-  FIRST_OF_COUPLE_STATE,
-  SECOND_OF_COUPLE_STATE,
   CORRECT_COUPLE_STATE,
   INCORRECT_COUPLE_STATE,
   FINISHED_GAME_STATE,
 } from './constants'
+import { showCard, hideCards, equal, getNextGameState } from './helper'
 import defaultState from '../../defaultState'
 
 export function memoryGameReducer(state = defaultState, action) {
@@ -34,7 +33,7 @@ export function memoryGameReducer(state = defaultState, action) {
             ? getNextGameState(state.gameState)
             : FINISHED_GAME_STATE,
         selectedCards: [action.cardPosition, ...state.selectedCards],
-        cards: showClickedCard(state.cards, action.cardPosition),
+        cards: state.cards.map(showCard(action.cardPosition)),
       }
 
     case CHECK_COUPLE:
@@ -59,53 +58,10 @@ export function memoryGameReducer(state = defaultState, action) {
         ...state,
         gameState: PLAYING_STATE,
         selectedCards: [],
-        cards: hideCards(state.cards, state.selectedCards),
+        cards: state.cards.map(hideCards(state.selectedCards)),
       }
 
     default:
       return state
   }
-}
-
-function equal(a, b) {
-  return a === b
-}
-
-function getNextGameState(gameState) {
-  let nextGameState = PLAYING_STATE
-  if (gameState === PLAYING_STATE) {
-    nextGameState = FIRST_OF_COUPLE_STATE
-  } else if (gameState === FIRST_OF_COUPLE_STATE) {
-    nextGameState = SECOND_OF_COUPLE_STATE
-  } else if (
-    gameState === CORRECT_COUPLE_STATE ||
-    gameState === INCORRECT_COUPLE_STATE
-  ) {
-    nextGameState = FIRST_OF_COUPLE_STATE
-  }
-  return nextGameState
-}
-
-function showClickedCard(cards, cardPosition) {
-  return cards.map(
-    (elm, i) =>
-      i === cardPosition
-        ? {
-            ...elm,
-            showed: true,
-          }
-        : elm
-  )
-}
-
-function hideCards(cards, selectedCards) {
-  return cards.map(
-    (elm, i) =>
-      selectedCards.includes(i)
-        ? {
-            ...elm,
-            showed: false,
-          }
-        : elm
-  )
 }
