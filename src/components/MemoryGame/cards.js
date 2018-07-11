@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import styled, { keyframes } from 'styled-components'
 import ButtonStart from './button-start'
 import Card from './card'
-import { PLAYING_STATE, FIRST_OF_COUPLE_STATE } from './constants'
 
 const gradient = keyframes`
   0% {
@@ -46,6 +45,7 @@ const Cards = ({
   gameState,
   hasWin,
   isPlaying,
+  isClickable,
   startGame,
   showCard,
 }) => (
@@ -62,12 +62,7 @@ const Cards = ({
               <Card
                 value={card.value}
                 showed={card.showed}
-                onClick={() =>
-                  gameState === PLAYING_STATE ||
-                  gameState === FIRST_OF_COUPLE_STATE
-                    ? showCard(position)
-                    : ''
-                }
+                onClick={() => isClickable ? showCard(position) : ''}
               />
             </Li>
           ))}
@@ -83,6 +78,12 @@ Cards.propTypes = {
       showed: PropTypes.bool.isRequired,
     }).isRequired
   ).isRequired,
+  gameState: PropTypes.string,
+  hasWin: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  isClickable: PropTypes.bool.isRequired,
+  startGame: PropTypes.func.isRequired,
+  showCard: PropTypes.func.isRequired,
 }
 
 export default Cards

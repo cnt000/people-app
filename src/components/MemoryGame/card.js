@@ -33,9 +33,9 @@ const Card = ({ value, showed, onClick }) => {
 }
 
 Card.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  showed: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,
+  showed: PropTypes.bool.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default Card

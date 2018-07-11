@@ -20,6 +20,8 @@ const mapStateToProps = state => {
       state.memoryGameReducer.gameState === CORRECT_COUPLE_STATE ||
       state.memoryGameReducer.gameState === INCORRECT_COUPLE_STATE,
     hasWin: state.memoryGameReducer.gameState === FINISHED_GAME_STATE,
+    isClickable: state.memoryGameReducer.gameState === PLAYING_STATE ||
+      state.memoryGameReducer.gameState === FIRST_OF_COUPLE_STATE,
     gameState: state.memoryGameReducer.gameState,
   }
 }
