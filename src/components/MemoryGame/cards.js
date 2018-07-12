@@ -53,7 +53,9 @@ const Cards = ({
     <h1>gameState: {gameState}</h1>
 
     {hasWin && <p>HAI VINTO!!!!</p>}
+
     {!isPlaying && <ButtonStart onClick={() => startGame()} />}
+
     {isPlaying && (
       <Ul>
         {cards &&
@@ -62,7 +64,7 @@ const Cards = ({
               <Card
                 value={card.value}
                 showed={card.showed}
-                onClick={() => isClickable ? showCard(position) : ''}
+                onClick={() => (isClickable ? showCard(position) : '')}
               />
             </Li>
           ))}
