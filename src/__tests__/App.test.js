@@ -8,4 +8,12 @@ describe('App', () => {
       <App auth={{ isAuthenticated: () => true, userHasScopes: () => true }} />
     )
   })
+
+  it('renders not authenticated', () => {
+    shallow(
+      <App
+        auth={{ isAuthenticated: () => false, userHasScopes: () => false }}
+      />
+    )
+  })
 })
