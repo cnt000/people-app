@@ -13,7 +13,7 @@ function shuffleArray(array) {
 
 const gameState = {
   selectedCards: [],
-  cards: shuffleArray(cards.map(val => ({ value: val, showed: false }))),
+  cards: cards.map(val => ({ value: val, showed: false })),
 }
 
 export default gameState
