@@ -6,7 +6,8 @@
     "collectCoverageFrom": [
       "src/**/*.js",
       "!<rootDir>/node_modules/",
-      "!src/stories/"
+      "!src/stories/**/*.js",
+      "!src/registerServiceWorker.js"
     ],
     "coverageThreshold": {
       "global": {
