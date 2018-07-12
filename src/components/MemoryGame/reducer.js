@@ -13,7 +13,7 @@ import {
 import { showCard, hideCards, equal, getNextGameState } from './helper'
 import defaultState from '../../defaultState'
 
-export function memoryGameReducer(state, action) {
+export function memoryGameReducer(state = defaultState, action) {
   switch (action.type) {
     case START_GAME:
       return {
