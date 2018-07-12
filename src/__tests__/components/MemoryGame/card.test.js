@@ -56,7 +56,9 @@ describe('Card', () => {
   // })
 
   it('should render value if showed', () => {
-    const output = mount(<Card value={'B'} showed={true} onClick={() => console.log('click')} />)
+    const output = mount(
+      <Card value={'B'} showed={true} onClick={() => console.log('click')} />
+    )
     expect(output.text()).toContain('B')
   })
 
@@ -64,5 +66,4 @@ describe('Card', () => {
   //   const output = mount(<Card value={'B'} showed={false} onClick={() => console.log('click')} />)
   //   expect(output).not.toHaveProperty('background', 'white')
   // })
-
 })
