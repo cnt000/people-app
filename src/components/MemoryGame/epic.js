@@ -1,7 +1,5 @@
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/delay'
-import 'rxjs/add/operator/mapTo'
-import 'rxjs/add/operator/filter'
+import { filter, delay, mapTo } from 'rxjs/operators'
+import { ofType } from 'redux-observable'
 import {
   SHOW_CARD,
   CHECK_COUPLE,
@@ -13,29 +11,32 @@ import {
 } from './constants'
 
 export const memoryGameShowCardEpic = (action$, state$) => {
-  return action$
-    .ofType(SHOW_CARD)
-    .filter(
+  return action$.pipe(
+    ofType(SHOW_CARD),
+    filter(
       () => state$.value.memoryGameReducer.gameState === SECOND_OF_COUPLE_STATE
-    )
-    .mapTo({ type: CHECK_COUPLE })
+    ),
+    mapTo({ type: CHECK_COUPLE })
+  )
 }
 
 export const memoryGameCleanSelectedEpic = (action$, state$) => {
-  return action$
-    .ofType(CHECK_COUPLE)
-    .filter(
+  return action$.pipe(
+    ofType(CHECK_COUPLE),
+    filter(
       () => state$.value.memoryGameReducer.gameState === CORRECT_COUPLE_STATE
-    )
-    .mapTo({ type: VALID_COUPLE })
+    ),
+    mapTo({ type: VALID_COUPLE })
+  )
 }
 
 export const memoryGameHideCoupleEpic = (action$, state$) => {
-  return action$
-    .ofType(CHECK_COUPLE)
-    .filter(
+  return action$.pipe(
+    ofType(CHECK_COUPLE),
+    filter(
       () => state$.value.memoryGameReducer.gameState === INCORRECT_COUPLE_STATE
-    )
-    .delay(4000)
-    .mapTo({ type: INVALID_COUPLE })
+    ),
+    delay(4000),
+    mapTo({ type: INVALID_COUPLE })
+  )
 }
