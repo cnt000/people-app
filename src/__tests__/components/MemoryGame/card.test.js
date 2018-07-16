@@ -4,6 +4,21 @@ import Card from '../../../components/MemoryGame/card'
 import { shallow, mount } from 'enzyme'
 import { shallowToJson } from 'enzyme-to-json'
 
+function setup() {
+  const props = {
+    value: 'A',
+    showed: true,
+    onClick: jest.fn()
+  }
+
+  const enzymeWrapper = mount(<Card {...props} />)
+
+  return {
+    props,
+    enzymeWrapper
+  }
+}
+
 describe('Card', () => {
   it('should render (without snapshot)', () => {
     const div = document.createElement('div')
@@ -50,20 +65,19 @@ describe('Card', () => {
     expect(shallowToJson(output)).toMatchSnapshot()
   })
 
-  // it('should render white if showed', () => {
-  //   const output = mount(<Card value={'B'} showed={true} onClick={() => console.log('click')} />)
-  //   expect(output).toHaveProperty('background', 'white')
-  // })
-
   it('should render value if showed', () => {
-    const output = mount(
-      <Card value={'B'} showed={true} onClick={() => console.log('click')} />
-    )
-    expect(output.text()).toContain('B')
+    const { enzymeWrapper } = setup()
+    expect(enzymeWrapper.text()).toContain('A')
+  })
+  it('should NOT render value if not showed', () => {
+    const props = {
+      value: 'A',
+      showed: false,
+      onClick: jest.fn()
+    }
+  
+    const enzymeWrapper = mount(<Card {...props} />)  
+    expect(enzymeWrapper.text()).toContain('')
   })
 
-  // it('should render not white if not showed', () => {
-  //   const output = mount(<Card value={'B'} showed={false} onClick={() => console.log('click')} />)
-  //   expect(output).not.toHaveProperty('background', 'white')
-  // })
 })
