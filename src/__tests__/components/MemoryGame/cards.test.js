@@ -146,7 +146,7 @@ describe('Cards', () => {
     expect(enzymeWrapper.find('div.card').length).toBe(6)
   })
 })
-​
+/*​
 describe('components', () => {
   describe('Header', () => {
     it('should render self and subcomponents', () => {
@@ -171,3 +171,4 @@ describe('components', () => {
     })
   })
 })
+*/
