@@ -8,14 +8,14 @@ function setup() {
   const props = {
     value: 'A',
     showed: true,
-    onClick: jest.fn()
+    onClick: jest.fn(),
   }
 
   const enzymeWrapper = mount(<Card {...props} />)
 
   return {
     props,
-    enzymeWrapper
+    enzymeWrapper,
   }
 }
 
@@ -73,11 +73,10 @@ describe('Card', () => {
     const props = {
       value: 'A',
       showed: false,
-      onClick: jest.fn()
+      onClick: jest.fn(),
     }
-  
-    const enzymeWrapper = mount(<Card {...props} />)  
+
+    const enzymeWrapper = mount(<Card {...props} />)
     expect(enzymeWrapper.text()).toContain('')
   })
-
 })

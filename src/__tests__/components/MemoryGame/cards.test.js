@@ -115,7 +115,7 @@ describe('Cards', () => {
       showCard: () => console.log('click show card'),
       startGame: () => console.log('click start game'),
     }
-  
+
     const enzymeWrapper = mount(<Cards {...props} />)
     expect(enzymeWrapper.text()).toContain('HAI VINTO')
   })
@@ -131,6 +131,9 @@ describe('Cards', () => {
     }
     const enzymeWrapper = mount(<Cards {...props} />)
     expect(enzymeWrapper.find('p').hasClass('start-button')).toBe(true)
+
+    //const startButton = enzymeWrapper.find('ButtonStart').props()
+    //expect(startButton.onClick).toBe(function onClick(){})
   })
 
   it('should render "CARDS" when isPlaying', () => {
@@ -146,29 +149,3 @@ describe('Cards', () => {
     expect(enzymeWrapper.find('div.card').length).toBe(6)
   })
 })
-/*​
-describe('components', () => {
-  describe('Header', () => {
-    it('should render self and subcomponents', () => {
-      const { enzymeWrapper } = setup()
-​
-      expect(enzymeWrapper.find('header').hasClass('header')).toBe(true)
-​
-      expect(enzymeWrapper.find('h1').text()).toBe('todos')
-​
-      const todoInputProps = enzymeWrapper.find('TodoTextInput').props()
-      expect(todoInputProps.newTodo).toBe(true)
-      expect(todoInputProps.placeholder).toEqual('What needs to be done?')
-    })
-​
-    it('should call addTodo if length of text is greater than 0', () => {
-      const { enzymeWrapper, props } = setup()
-      const input = enzymeWrapper.find('TodoTextInput')
-      input.props().onSave('')
-      expect(props.addTodo.mock.calls.length).toBe(0)
-      input.props().onSave('Use Redux')
-      expect(props.addTodo.mock.calls.length).toBe(1)
-    })
-  })
-})
-*/
