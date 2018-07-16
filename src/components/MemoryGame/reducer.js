@@ -29,9 +29,9 @@ export function memoryGameReducer(state = defaultState, action = { type: '' }) {
       const hasNextGameState = state.cards.filter(val => !val.showed).length > 1
       return {
         ...state,
-        gameState:
-          (hasNextGameState) 
-            ? getNextGameState(state.gameState) : FINISHED_GAME_STATE,
+        gameState: hasNextGameState
+          ? getNextGameState(state.gameState)
+          : FINISHED_GAME_STATE,
         selectedCards: [action.cardPosition, ...state.selectedCards],
         cards: state.cards.map(showCard(action.cardPosition)),
       }

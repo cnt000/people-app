@@ -10,19 +10,26 @@ import {
   INCORRECT_COUPLE_STATE,
 } from './constants'
 
+const isPlayingState = [
+  PLAYING_STATE,
+  FIRST_OF_COUPLE_STATE,
+  SECOND_OF_COUPLE_STATE,
+  CORRECT_COUPLE_STATE,
+  INCORRECT_COUPLE_STATE,
+]
+
+const isFinished = [FINISHED_GAME_STATE]
+
+const isClickable = [PLAYING_STATE, FIRST_OF_COUPLE_STATE]
+
+const isCoupleSelected = [SECOND_OF_COUPLE_STATE]
+
 const mapStateToProps = state => {
   return {
     cards: state.memoryGameReducer.cards,
-    isPlaying:
-      state.memoryGameReducer.gameState === PLAYING_STATE ||
-      state.memoryGameReducer.gameState === FIRST_OF_COUPLE_STATE ||
-      state.memoryGameReducer.gameState === SECOND_OF_COUPLE_STATE ||
-      state.memoryGameReducer.gameState === CORRECT_COUPLE_STATE ||
-      state.memoryGameReducer.gameState === INCORRECT_COUPLE_STATE,
-    hasWin: state.memoryGameReducer.gameState === FINISHED_GAME_STATE,
-    isClickable:
-      state.memoryGameReducer.gameState === PLAYING_STATE ||
-      state.memoryGameReducer.gameState === FIRST_OF_COUPLE_STATE,
+    isPlaying: isPlayingState.includes(state.memoryGameReducer.gameState),
+    hasWin: isFinished.includes(state.memoryGameReducer.gameState),
+    isClickable: isClickable.includes(state.memoryGameReducer.gameState),
     gameState: state.memoryGameReducer.gameState,
   }
 }
@@ -31,7 +38,7 @@ const mapDispatchToProps = dispatch => ({
   showCard: id => dispatch(showCard(id)),
   startGame: () => dispatch(startGame()),
   checkCouple: gameState =>
-    gameState === SECOND_OF_COUPLE_STATE ? dispatch(checkCouple()) : '',
+    isCoupleSelected.includes(gameState) ? dispatch(checkCouple()) : '',
 })
 
 const MemoryGame = connect(
