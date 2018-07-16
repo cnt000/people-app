@@ -11,7 +11,7 @@ const ButtonStart = ({ onClick }) => {
   return (
     <Div onClick={onClick}>
       <h1>Memory Game</h1>
-      <p>Click to start</p>
+      <p className={'start-button'}>Click to start</p>
     </Div>
   )
 }

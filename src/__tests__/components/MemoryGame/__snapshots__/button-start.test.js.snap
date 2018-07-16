@@ -7,7 +7,9 @@ exports[`ButtonStart should render correctly with snapshot 1`] = `
   <h1>
     Memory Game
   </h1>
-  <p>
+  <p
+    className="start-button"
+  >
     Click to start
   </p>
 </styled.div>

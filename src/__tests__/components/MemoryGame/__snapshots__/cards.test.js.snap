@@ -2,9 +2,9 @@
 
 exports[`Cards should render after playing (finished) 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <p>
     HAI VINTO!!!!
   </p>
@@ -16,9 +16,9 @@ exports[`Cards should render after playing (finished) 1`] = `
 
 exports[`Cards should render before playing 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <ButtonStart
     onClick={[Function]}
   />
@@ -27,9 +27,9 @@ exports[`Cards should render before playing 1`] = `
 
 exports[`Cards should render correctly empty 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <ButtonStart
     onClick={[Function]}
   />
@@ -38,9 +38,9 @@ exports[`Cards should render correctly empty 1`] = `
 
 exports[`Cards should render correctly with snapshot 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <styled.ul>
     <styled.li
       key="0"
@@ -102,9 +102,9 @@ exports[`Cards should render correctly with snapshot 1`] = `
 
 exports[`Cards should render correctly with snapshot, isClickable false 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <styled.ul>
     <styled.li
       key="0"
@@ -166,9 +166,9 @@ exports[`Cards should render correctly with snapshot, isClickable false 1`] = `
 
 exports[`Cards should render playing 1`] = `
 <styled.div>
-  <h1>
+  <span>
     gameState: 
-  </h1>
+  </span>
   <styled.ul>
     <styled.li
       key="0"
