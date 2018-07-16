@@ -64,20 +64,6 @@ describe('Cards', () => {
     expect(shallowToJson(output)).toMatchSnapshot()
   })
 
-  it('should render "YOU WIN" when finished', () => {
-    const output = mount(
-      <Cards
-        cards={defaulState.cards}
-        showCard={() => console.log('click show card')}
-        startGame={() => console.log('click start game')}
-        isPlaying={false}
-        isClickable={false}
-        hasWin={true}
-      />
-    )
-    expect(output.text()).toContain('HAI VINTO')
-  })
-
   it('should render correctly empty', () => {
     const output = shallow(
       <Cards
@@ -118,5 +104,70 @@ describe('Cards', () => {
       />
     )
     expect(shallowToJson(output)).toMatchSnapshot()
+  })
+
+  it('should render "YOU WIN" when finished', () => {
+    const props = {
+      cards: defaulState.cards,
+      isPlaying: false,
+      isClickable: false,
+      hasWin: true,
+      showCard: () => console.log('click show card'),
+      startGame: () => console.log('click start game'),
+    }
+  
+    const enzymeWrapper = mount(<Cards {...props} />)
+    expect(enzymeWrapper.text()).toContain('HAI VINTO')
+  })
+
+  it('should render "PLAY GAME" before start', () => {
+    const props = {
+      cards: defaulState.cards,
+      isPlaying: false,
+      isClickable: false,
+      hasWin: false,
+      showCard: () => jest.fn(),
+      startGame: () => jest.fn(),
+    }
+    const enzymeWrapper = mount(<Cards {...props} />)
+    expect(enzymeWrapper.find('p').hasClass('start-button')).toBe(true)
+  })
+
+  it('should render "CARDS" when isPlaying', () => {
+    const props = {
+      cards: defaulState.cards,
+      isPlaying: true,
+      isClickable: false,
+      hasWin: false,
+      showCard: () => jest.fn(),
+      startGame: () => jest.fn(),
+    }
+    const enzymeWrapper = mount(<Cards {...props} />)
+    expect(enzymeWrapper.find('div.card').length).toBe(6)
+  })
+})
+​
+describe('components', () => {
+  describe('Header', () => {
+    it('should render self and subcomponents', () => {
+      const { enzymeWrapper } = setup()
+​
+      expect(enzymeWrapper.find('header').hasClass('header')).toBe(true)
+​
+      expect(enzymeWrapper.find('h1').text()).toBe('todos')
+​
+      const todoInputProps = enzymeWrapper.find('TodoTextInput').props()
+      expect(todoInputProps.newTodo).toBe(true)
+      expect(todoInputProps.placeholder).toEqual('What needs to be done?')
+    })
+​
+    it('should call addTodo if length of text is greater than 0', () => {
+      const { enzymeWrapper, props } = setup()
+      const input = enzymeWrapper.find('TodoTextInput')
+      input.props().onSave('')
+      expect(props.addTodo.mock.calls.length).toBe(0)
+      input.props().onSave('Use Redux')
+      expect(props.addTodo.mock.calls.length).toBe(1)
+    })
   })
 })
