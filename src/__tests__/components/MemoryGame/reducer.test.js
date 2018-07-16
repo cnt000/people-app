@@ -20,6 +20,10 @@ describe('MemoryGame reducer', () => {
     expect(memoryGameReducer({}, {})).toEqual({})
   })
 
+  it('should return the deafult state', () => {
+    expect(memoryGameReducer()).toEqual(defaultState)
+  })
+
   it('should handle START_GAME', () => {
     expect(
       memoryGameReducer(
