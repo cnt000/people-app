@@ -50,7 +50,7 @@ const Cards = ({
   showCard,
 }) => (
   <Div>
-    <h1>gameState: {gameState}</h1>
+    <span>gameState: {gameState}</span>
 
     {hasWin && <p>HAI VINTO!!!!</p>}
 

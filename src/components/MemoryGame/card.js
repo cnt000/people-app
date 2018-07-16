@@ -26,7 +26,7 @@ const Div = styled.div`
 
 const Card = ({ value, showed, onClick }) => {
   return (
-    <Div onClick={onClick} showed={showed}>
+    <Div onClick={onClick} showed={showed} className={'card'}>
       {showed && value}
     </Div>
   )
