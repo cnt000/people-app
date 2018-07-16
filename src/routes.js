@@ -5,8 +5,6 @@ import Home from './components/Home'
 import Callback from './components/Callback'
 import Auth from './modules/Auth/Auth'
 import history from './modules/History/history'
-import AboutUs from './components/AboutUs'
-import Topics from './components/Topics'
 import Ping from './components/Ping'
 import Profile from './components/Profile'
 import Admin from './components/Admin'
@@ -29,14 +27,6 @@ export const makeMainRoutes = () => {
         <Route
           path="/memory-game"
           render={props => <MemoryGame {...props} />}
-        />
-        <Route
-          path="/about"
-          render={props => <AboutUs auth={auth} {...props} />}
-        />
-        <Route
-          path="/topics"
-          render={props => <Topics auth={auth} {...props} />}
         />
         <Route
           path="/callback"

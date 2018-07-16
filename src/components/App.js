@@ -69,18 +69,6 @@ class App extends Component {
                   Admin
                 </Button>
               )}
-            <Button
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'topics')}
-            >
-              Topics
-            </Button>
-            <Button
-              className="btn-margin"
-              onClick={this.goTo.bind(this, 'about')}
-            >
-              About us
-            </Button>
           </Navbar.Header>
         </Navbar>
         <div className="container">{this.props.children}</div>
