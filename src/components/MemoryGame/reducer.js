@@ -13,7 +13,7 @@ import {
 import { showCard, hideCards, equal, getNextGameState } from './helper'
 import defaultState from '../../defaultState'
 
-export function memoryGameReducer(state = defaultState, action) {
+export function memoryGameReducer(state = defaultState, action = { type: '' }) {
   switch (action.type) {
     case START_GAME:
       return {
@@ -26,12 +26,12 @@ export function memoryGameReducer(state = defaultState, action) {
       return state
 
     case SHOW_CARD:
+      const hasNextGameState = state.cards.filter(val => !val.showed).length > 1
       return {
         ...state,
         gameState:
-          state.cards.filter(val => !val.showed).length > 1
-            ? getNextGameState(state.gameState)
-            : FINISHED_GAME_STATE,
+          (hasNextGameState) 
+            ? getNextGameState(state.gameState) : FINISHED_GAME_STATE,
         selectedCards: [action.cardPosition, ...state.selectedCards],
         cards: state.cards.map(showCard(action.cardPosition)),
       }
