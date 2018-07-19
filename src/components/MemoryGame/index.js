@@ -8,6 +8,7 @@ import {
   SECOND_OF_COUPLE_STATE,
   CORRECT_COUPLE_STATE,
   INCORRECT_COUPLE_STATE,
+  PRE_PLAYING_STATE,
 } from './constants'
 
 const isPlayingState = [
@@ -16,6 +17,7 @@ const isPlayingState = [
   SECOND_OF_COUPLE_STATE,
   CORRECT_COUPLE_STATE,
   INCORRECT_COUPLE_STATE,
+  PRE_PLAYING_STATE,
 ]
 
 const isFinished = [FINISHED_GAME_STATE]

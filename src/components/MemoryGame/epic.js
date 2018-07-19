@@ -8,6 +8,8 @@ import {
   INCORRECT_COUPLE_STATE,
   CORRECT_COUPLE_STATE,
   SECOND_OF_COUPLE_STATE,
+  TIMER_START,
+  START_GAME,
 } from './constants'
 
 export const memoryGameShowCardEpic = (action$, state$) => {
@@ -38,5 +40,13 @@ export const memoryGameHideCoupleEpic = (action$, state$) => {
     ),
     delay(4000),
     mapTo({ type: INVALID_COUPLE })
+  )
+}
+
+export const memoryGameTimerStartEpic = (action$) => {
+  return action$.pipe(
+    ofType(TIMER_START),
+    delay(10000),
+    mapTo({ type: START_GAME })
   )
 }

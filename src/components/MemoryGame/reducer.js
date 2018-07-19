@@ -6,15 +6,25 @@ import {
   INVALID_COUPLE,
   VALID_COUPLE,
   PLAYING_STATE,
+  PRE_PLAYING_STATE,
   CORRECT_COUPLE_STATE,
   INCORRECT_COUPLE_STATE,
   FINISHED_GAME_STATE,
+  TIMER_START,
 } from './constants'
 import { showCard, hideCards, equal, getNextGameState } from './helper'
 import defaultState from '../../defaultState'
 
 export function memoryGameReducer(state = defaultState, action = { type: '' }) {
   switch (action.type) {
+
+    case TIMER_START:
+      return {
+        ...state,
+        gameState: PRE_PLAYING_STATE,
+        cards: state.cards.map(card => ({ ...card, showed: true })),
+      }
+
     case START_GAME:
       return {
         ...state,

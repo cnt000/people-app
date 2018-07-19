@@ -1,4 +1,4 @@
-import { LOAD_CARDS, SHOW_CARD, CHECK_COUPLE, START_GAME } from './constants'
+import { LOAD_CARDS, SHOW_CARD, CHECK_COUPLE, TIMER_START } from './constants'
 
 export function loadCards() {
   return {
@@ -15,7 +15,7 @@ export function showCard(cardPosition) {
 
 export function startGame() {
   return {
-    type: START_GAME,
+    type: TIMER_START,
   }
 }
 
