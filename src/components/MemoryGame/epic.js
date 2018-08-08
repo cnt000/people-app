@@ -43,7 +43,7 @@ export const memoryGameHideCoupleEpic = (action$, state$) => {
   )
 }
 
-export const memoryGameTimerStartEpic = (action$) => {
+export const memoryGameTimerStartEpic = action$ => {
   return action$.pipe(
     ofType(TIMER_START),
     delay(10000),

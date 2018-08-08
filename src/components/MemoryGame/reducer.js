@@ -17,7 +17,6 @@ import defaultState from '../../defaultState'
 
 export function memoryGameReducer(state = defaultState, action = { type: '' }) {
   switch (action.type) {
-
     case TIMER_START:
       return {
         ...state,

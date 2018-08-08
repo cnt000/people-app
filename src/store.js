@@ -6,7 +6,7 @@ import {
   memoryGameShowCardEpic,
   memoryGameCleanSelectedEpic,
   memoryGameHideCoupleEpic,
-  memoryGameTimerStartEpic
+  memoryGameTimerStartEpic,
 } from './components/MemoryGame/epic'
 import { memoryGameReducer } from './components/MemoryGame/reducer'
 
@@ -35,12 +35,12 @@ export const rootEpic = combineEpics(
   memoryGameShowCardEpic,
   memoryGameCleanSelectedEpic,
   memoryGameHideCoupleEpic,
-  memoryGameTimerStartEpic,
+  memoryGameTimerStartEpic
 )
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),
-  ...enhancers,
+  ...enhancers
 )
 
 const store = createStore(reducer, initialState, composedEnhancers)
