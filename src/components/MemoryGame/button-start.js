@@ -9,9 +9,11 @@ const Div = styled.div`
 
 const ButtonStart = ({ onClick }) => {
   return (
-    <Div onClick={onClick}>
+    <Div>
       <h1>Memory Game</h1>
-      <p className={'start-button'}>Click to start</p>
+      <button onClick={onClick} className={'start-button'}>
+        Click to start
+      </button>
     </Div>
   )
 }
