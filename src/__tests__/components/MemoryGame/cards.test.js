@@ -130,7 +130,7 @@ describe('Cards', () => {
       startGame: () => jest.fn(),
     }
     const enzymeWrapper = mount(<Cards {...props} />)
-    expect(enzymeWrapper.find('p').hasClass('start-button')).toBe(true)
+    expect(enzymeWrapper.find('button').hasClass('start-button')).toBe(true)
 
     //const startButton = enzymeWrapper.find('ButtonStart').props()
     //expect(startButton.onClick).toBe(function onClick(){})

@@ -1,16 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ButtonStart should render correctly with snapshot 1`] = `
-<styled.div
-  onClick={[Function]}
->
+<styled.div>
   <h1>
     Memory Game
   </h1>
-  <p
+  <button
     className="start-button"
+    onClick={[Function]}
   >
     Click to start
-  </p>
+  </button>
 </styled.div>
 `;
