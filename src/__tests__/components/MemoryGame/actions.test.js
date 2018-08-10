@@ -2,7 +2,7 @@ import {
   LOAD_CARDS,
   SHOW_CARD,
   CHECK_COUPLE,
-  START_GAME,
+  TIMER_START,
 } from '../../../components/MemoryGame/constants'
 import {
   loadCards,
@@ -29,7 +29,7 @@ describe('actions', () => {
 
   it('should create an action to start game', () => {
     const expectedAction = {
-      type: START_GAME,
+      type: TIMER_START,
     }
     expect(startGame()).toEqual(expectedAction)
   })

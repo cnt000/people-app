@@ -1,4 +1,5 @@
 export const START_GAME = 'memoryGame/START_GAME'
+export const TIMER_START = 'memoryGame/TIMER_START'
 export const LOAD_CARDS = 'memoryGame/LOAD_CARDS'
 export const SHOW_CARD = 'memoryGame/SHOW_CARD'
 export const CHECK_COUPLE = 'memoryGame/CHECK_COUPLE'
@@ -12,6 +13,5 @@ export const SECOND_OF_COUPLE_STATE = 'SECOND_OF_COUPLE_STATE'
 export const CORRECT_COUPLE_STATE = 'CORRECT_COUPLE_STATE'
 export const INCORRECT_COUPLE_STATE = 'INCORRECT_COUPLE_STATE'
 export const FINISHED_GAME_STATE = 'FINISHED_GAME_STATE'
-export const TIMER_START = 'TIMER_START'
 
 export const DEFAULT_LOCALE = 'en'
